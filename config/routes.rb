@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  get "notes", to: "notes#index"
+  resources :notes do
+    member do
+      delete :cancel
+    end
+  end
 
   get "hello", to: "pages#main"
   get "about", to: "pages#about"
