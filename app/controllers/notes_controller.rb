@@ -1,5 +1,4 @@
 class NotesController < ApplicationController
-  before_action :note_params
 
   def index
   end
@@ -14,14 +13,13 @@ class NotesController < ApplicationController
     if @note.save
       redirect_to "/notes"
     else
-      redirect_to "/note/new"
+      redirect_to "/notes/new"
     end
   end
 
 private
-
   def note_params
-    params.permit(:title, :content)
+    params.require(:note).permit(:title, :content)
   end
 
 end
