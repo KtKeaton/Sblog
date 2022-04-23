@@ -14,7 +14,7 @@ class NotesController < ApplicationController
     if note.save
       redirect_to "/notes"
     else
-      #
+      redirect_to "/note/new"
     end
   end
 
