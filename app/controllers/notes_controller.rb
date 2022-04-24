@@ -1,7 +1,8 @@
 class NotesController < ApplicationController
 
   def index
-    @notes = Note.all
+    @notes = Note.order(id: :desc)
+    
   end
 
   def new
