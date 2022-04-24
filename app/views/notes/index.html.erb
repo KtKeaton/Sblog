@@ -5,15 +5,11 @@
 <table>
   <tr>
     <td>Title</td>
-    <td>Content</td>
 
-    <% @notes.each do |note| %>
+  <% @notes.each do |note| %>
   <tr>
     <td>
-      <%= note.title %>
-    </td>
-    <td>
-      <%= note.content %>
+      <%= link_to note.title, note_path(note) %>
     </td>
   </tr>
   <% end %>
