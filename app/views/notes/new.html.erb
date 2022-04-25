@@ -1,16 +1,9 @@
 <h1>新增筆記</h1>
 
 <h3>自動憑證</h3>
-<%= form_for(@note) do |f| %>
-    <%= f.label :title, "標題" %>
-    <%= f.text_field :title %>
-    <%= f.label :content, "內文" %>
-    <%= f.text_area :content %>
-    <%= f.submit "送出" %>
-<% end %>
+<%= render "form" %>
 
-
-<h3>手動憑證</h3>
+<!-- <h3>手動憑證</h3>
 <form action="/notes" method="post">
     <input type="hidden" name="authenticity_token" value=<%=form_authenticity_token %>>
     標題：<input type="text" name="title">
@@ -24,4 +17,4 @@
     <input type="text" name="p">
     <input type="text" name="q">
     <input type="submit" value="送出">
-</form>
+</form> -->
