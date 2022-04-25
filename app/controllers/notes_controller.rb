@@ -44,11 +44,11 @@ class NotesController < ApplicationController
 
 private
   def find_note
-    begin
+    # begin
       @note = Note.find(params[:id])  
-    rescue ActiveRecord::RecordNotFound
-      render file: "public/404.html", status: 404
-    end
+    # rescue ActiveRecord::RecordNotFound
+    #   #render file: "public/404.html", status: 404
+    # end
   end
 
 
