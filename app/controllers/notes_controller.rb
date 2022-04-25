@@ -44,8 +44,13 @@ class NotesController < ApplicationController
 
 private
   def find_note
-    @note = Note.find(params[:id])  
+    begin
+      @note = Note.find(params[:id])  
+    rescue ActiveRecord::RecordNotFound
+      render file: "public/404.html", status: 404
+    end
   end
+
 
   def note_params
     params.require(:note).permit(:title, :content)
