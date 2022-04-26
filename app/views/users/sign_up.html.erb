@@ -1,0 +1,30 @@
+<h1>註冊會員</h1>
+<% if @user.errors.any? %>
+  <ul>
+    <% @user.errors.full_messages.each do |message| %>
+    <li>
+      <%= message %>
+    </li>
+  </ul>
+  <% end %>
+<% end %>
+
+<div>
+<%= form_for(@user, url:"/users") do |f| %>
+  <%= f.label :nickname %>
+  <%= f.text_field :nickname %>
+</div>
+<div>
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+</div>
+<div>
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+</div>
+<div>
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %>
+</div>
+  <%= f.submit %>
+<% end %>

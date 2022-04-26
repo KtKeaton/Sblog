@@ -8,7 +8,14 @@ Rails.application.routes.draw do
   get "/", to: "notes#index"
   get "hello", to: "pages#main"
   get "about", to: "pages#about"
-  get "users", to: "users#profile"
+  
+  resources :users, only: [:create] do
+    collection do
+      get :sign_up
+    end
+  end
 
+
+  # get "users", to: "users#profile"
 
 end
