@@ -2,7 +2,7 @@ class NotesController < ApplicationController
   before_action :find_note, only: [:show, :edit, :update, :destroy]
 
   def index
-    @notes = Note.order(id: :desc)
+    @notes = Note.where(deleted_at: nil).order(id: :desc)
     
   end
 
@@ -37,7 +37,8 @@ class NotesController < ApplicationController
   end
 
   def destroy
-    @note.destroy
+    # @note.destroy
+    @note.update(deleted_at: Time.now)
     redirect_to "/notes"
   end
 
