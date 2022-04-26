@@ -2,7 +2,7 @@ class NotesController < ApplicationController
   before_action :find_note, only: [:show, :edit, :update, :destroy]
 
   def index
-    @notes = Note.where(deleted_at: nil).order(id: :desc)
+    @notes = Note.available.order(id: :desc)
     
   end
 
@@ -46,7 +46,7 @@ class NotesController < ApplicationController
 private
   def find_note
     # begin
-      @note = Note.find(params[:id])  
+      @note = Note.available.find(params[:id])  
     # rescue ActiveRecord::RecordNotFound
     #   #render file: "public/404.html", status: 404
     # end
