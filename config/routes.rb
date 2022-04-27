@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   
   resources :users, only: [:create] do
     collection do
+
       get :sign_up      # GET /users/sign_up 註冊
       get :sign_in      # GET /users/sign_in 登入
     end
