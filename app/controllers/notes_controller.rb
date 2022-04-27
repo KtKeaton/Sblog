@@ -7,6 +7,9 @@ class NotesController < ApplicationController
   end
 
   def new
+    if session[:redoing] == nil
+      redirect_to "/users/sign_in"
+    end
     @note = Note.new
   end
 
