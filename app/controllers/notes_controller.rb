@@ -1,9 +1,9 @@
 class NotesController < ApplicationController
-  before_action :find_user_note, only: [:edit, :update, :destroy]
+  before_action :find_user_note, only: [:show, :edit, :update, :destroy]
   before_action :check_login!, except: [:index, :show]
 
   def index
-    @notes = Note.includes(:user).order(id: :desc)
+    @notes = current_user.notes.includes(:user).order(id: :desc)
   end
 
   def new
@@ -27,7 +27,7 @@ class NotesController < ApplicationController
 
   def show
     # 顯示所有文章，擺脫 current_user
-    @note = Note.find(params[:id])
+    # @note = Note.find(params[:id])
   end
 
   def edit
