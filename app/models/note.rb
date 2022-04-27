@@ -3,4 +3,6 @@ class Note < ApplicationRecord
   validates :content, presence: true
 
   default_scope { where(deleted_at: nil) }
+
+  belongs_to :user
 end
