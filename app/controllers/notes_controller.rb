@@ -1,22 +1,23 @@
 class NotesController < ApplicationController
-  before_action :find_note, only: [:show, :edit, :update, :destroy]
+  before_action :find_user_note, only: [:edit, :update, :destroy]
   before_action :check_login!, except: [:index, :show]
 
   def index
-    @notes = Note.order(id: :desc)
-    
+    @notes = Note.includes(:user).order(id: :desc)
   end
 
   def new
-    if not user_signed_in?
-      redirect_to login_path
-    end
-    @note = Note.new
+    # if not user_signed_in?
+    #   redirect_to login_path
+    # end
+    @note = current_user.notes.new
   end
 
   def create
-    @note = Note.new(note_params)
-    
+    # @note = Note.new(note_params)
+    # @note.user_id = current_user.id
+    @note = current_user.notes.new(note_params)
+
     if @note.save
       redirect_to "/notes"
     else
@@ -25,7 +26,8 @@ class NotesController < ApplicationController
   end
 
   def show
-    
+    # 顯示所有文章，擺脫 current_user
+    @note = Note.find(params[:id])
   end
 
   def edit
@@ -48,9 +50,10 @@ class NotesController < ApplicationController
 
 
 private
-  def find_note
+  def find_user_note
     # begin
-      @note = Note.find(params[:id])  
+      # @note = Note.find_by(id: params[:id], user_id: current_user.ud)
+        @note = current_user.notes.find(params[:id])
     # rescue ActiveRecord::RecordNotFound
     #   #render file: "public/404.html", status: 404
     # end

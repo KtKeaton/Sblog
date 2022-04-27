@@ -4,10 +4,12 @@
 
 <table>
   <tr>
+    <!-- <td>Author</td> -->
     <td>Title</td>
     <td>Edit</td>
   <% @notes.each do |note| %>
   <tr>
+
     <td>
       <%= link_to note.title, note_path(note) %>
     </td>
