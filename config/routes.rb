@@ -16,5 +16,6 @@ Rails.application.routes.draw do
     end
   end
 
-  post "users/sign_in", to: "sessions#create"     # POST /users/sign_in 登入
+  post "users/sign_in", to: "sessions#create", as: "login"     # 登入
+  delete "/users", to: "sessions#destroy", as: "logout"        # 登出
 end

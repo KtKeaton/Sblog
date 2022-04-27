@@ -13,12 +13,13 @@ class SessionsController < ApplicationController
       session[:redoing] = user.id
       redirect_to "/"
     else
-      redirect_to "/users/sign_in"
+      redirect_to login_path
     end
   end
 
   def destroy
-
+    session[:redoing] = nil
+    redirect_to "/"
   end
 
   private

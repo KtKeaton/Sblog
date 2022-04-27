@@ -1,5 +1,6 @@
 class NotesController < ApplicationController
   before_action :find_note, only: [:show, :edit, :update, :destroy]
+  before_action :check_login!, except: [:index, :show]
 
   def index
     @notes = Note.order(id: :desc)
@@ -7,8 +8,8 @@ class NotesController < ApplicationController
   end
 
   def new
-    if session[:redoing] == nil
-      redirect_to "/users/sign_in"
+    if not user_signed_in?
+      redirect_to login_path
     end
     @note = Note.new
   end
