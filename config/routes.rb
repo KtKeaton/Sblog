@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :notes do
-    member do
+    resources :comments, shallow: true, except: [:new, :edit, :update]
+
+    member do 
       delete :cancel
     end
   end
