@@ -28,6 +28,7 @@ class NotesController < ApplicationController
   def show
     # 顯示所有文章，擺脫 current_user
     # @note = Note.find(params[:id])
+    @comment = @note.comments.new
   end
 
   def edit

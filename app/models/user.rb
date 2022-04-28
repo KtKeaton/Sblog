@@ -9,6 +9,7 @@ class User < ApplicationRecord
   before_create :encrypt_password
 
   has_many :notes
+  has_many :comments
 
   private
   def encrypt_password
